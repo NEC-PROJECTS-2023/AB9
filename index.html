@@ -1,0 +1,208 @@
+ <!DOCTYPE html>
+  <html lang="en" dir="ltr">
+    <head>
+      <title> CROP YIELD PREDICTION</title>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/Style.css')}}">
+
+      <style>
+          body{
+              #background: #4d0026;
+              background: linear-gradient(to left, #667292 0%, #a2b9bc 100%);
+          }
+          h2{
+          color:red;
+          font-size:70px;
+          }
+
+
+          footer a{
+            color: #fff;
+          }
+          footer a:hover{
+            color: #fff;
+          }
+          .centerdiv{
+            height: 15vh;
+            display: flex;
+            #justify-content: center;
+            align-items: center;
+          }
+          .centerdiv a{
+            height: 30px;
+            width: 30px;
+            background-color: #f5f6fa;
+            border-radius: 50px;
+            text-align: center;
+            margin: 5px;
+            line-height: 30px;
+            #box-shadow: 1px 4px 2px 2px #dcdde1;
+            position: relative;
+            overflow: hidden;
+          }
+          .centerdiv a i{
+            transition: all 0.3s linear;
+          }
+          .centerdiv a:hover i{
+            transform: scale(1.5);
+            color: #f5f6fa;
+          }
+          .centerdiv a:before{
+            content: "";
+            width: 120%; height: 120%;
+            position: absolute;
+            top: 90%; left: -50%;
+            background-color: #00a8ff;
+            transform: rotate(60deg);
+          }
+
+          .centerdiv a:hover:before{
+            animation: socialicons 0.8s 1;
+            animation-fill-mode: forwards;
+          }
+          @keyframes socialicons {
+
+            0%{ top: 90%; left: -50%;}
+            50%{ top: -60%; left: -10%;}
+            100%{ top: -10%; left: -10%}
+          }
+
+          .fa-facebook-f{
+            color: #e84393;
+          }
+          .fa-instagram{
+            color: #e84393;
+          }
+          .fa-github{
+            color: #e84118;
+          }
+          .fa-linkedin{
+            color: #0097e6;
+          }
+          .fa-twitter{
+            color: #0097e6;
+          }
+      </style>
+
+
+
+    </head>
+
+    <body>
+
+
+        <div style ="text-align:center">
+            <h2>CROP YIELD PREDICTION</h2>
+
+        </div>
+
+      <br>
+
+
+     <div class="wrapper">
+       <div class="container my-5">
+         <div class="row">
+           <div class="col-md-10 col-sm-6 mx-auto">
+             <form class="" action="/predict" method="post">
+
+                 <div class="form-group">
+                  <select class="form-control" name="state_name" required>
+                            <option value="  " selected> State Name</option>
+                            <option value="0"> Meghalaya</option>
+                             <option value="1">Manipur</option>
+                             <option value="2"> Kerala</option>
+                             <option value="3"> Jharkhand</option>
+                             <option value="4"> Jammu and Kashmir</option>
+                             <option value="5"> Jharkhand</option>
+                            <option value="6"> Karnataka </option>
+                             <option value="7">Haryana</option>
+                             <option value="8"> Himachal Pradesh</option>
+                             <option value="9"> Goa</option>
+                             <option value="10"> Chhattisgarh</option>
+                             <option value="11"> Assam </option>
+                             <option value="12">Andhra Pradesh</option>
+                             <option value="13"> Bihar</option>
+                             <option value="14"> Arunachal Pradesh</option>
+                             <option value="15"> Andaman and Nicobar Islands</option>
+                            <option value="16"> Other</option>
+
+                        </select>
+                 </div>
+
+                <div class="form-group">
+                 <input type="number" name="crop_year" id="crop_year" class="form-control" required>
+                    <label for="crop_year" class="ph-area"> Crop Year</label></div>
+
+                    <div class="form-group">
+                        <select class="form-control" name="season" required>
+                            <option value="  "selected> Season</option>
+                             <option value="0"> Kharif </option>
+                             <option value="1">Whole Year</option>
+                             <option value="2"> Rabi</option>
+                             <option value="3"> Autumn</option>
+                             <option value="4"> Summer</option>
+                             <option value="5">Winter</option>
+
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                  <select class="form-control" name="crop" required>
+                            <option value="  " selected> Select Crop</option>
+                            <option value="0">Rice</option>
+                             <option value="1">Banana</option>
+                             <option value="2"> Coconut</option>
+                             <option value="3"> Sugarcane</option>
+                             <option value="4"> Sweet potato</option>
+                             <option value="5"> Dry chillies</option>
+                            <option value="6"> Turmeric </option>
+                             <option value="7">Maize</option>
+                             <option value="8"> Groundnut</option>
+                             <option value="9"> Sunflower</option>
+                             <option value="10"> Wheat</option>
+                             <option value="11"> Ragi</option>
+                             <option value="12">Tobacco</option>
+                             <option value="13"> Onion</option>
+                             <option value="14"> Potato</option>
+                             <option value="15"> Cucumber</option>
+                            <option value="16"> Other</option>
+
+                        </select>
+                 </div>
+
+                      <div class="form-group">
+                 <input type="number" name="area" id="area" class="form-control" required>
+                          <label for="area" class="ph-area"> Area</label></div>
+
+
+              <div class="form-group">
+               <input type="submit"  onclick="mypre()" class="btn btn-primary" value="Submit">
+               <input type="reset" class="btn btn-danger" value="Reset">
+             </div>
+
+             </form><h1>Prediction value is:    {{r}}</h1>
+
+           </div>
+         </div>
+       </div>
+     </div>
+
+
+     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+     integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+     integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </body>
+
+  </html>
+
+
+  
+
+
+
